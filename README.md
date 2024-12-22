@@ -74,19 +74,19 @@ This repository includes OpenTofu configuration files that define the AWS infras
 1. **Initialize OpenTofu**:
    Initialize the OpenTofu working directory to download provider plugins and set up the backend:
    ```bash
-   opentofu init
+   tofu init
    ```
 
 2. **Plan the Deployment**:
    Run a OpenTofu plan to review the resources that will be created:
    ```bash
-   opentofu plan
+   tofu plan
    ```
 
 3. **Apply the OpenTofu Configuration**:
    Apply the OpenTofu configuration to create the EKS cluster:
    ```bash
-   opentofu apply
+   tofu apply
    ```
    Confirm the apply action when prompted.
 
