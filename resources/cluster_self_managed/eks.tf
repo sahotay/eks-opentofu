@@ -11,14 +11,16 @@ module "eks" {
     }
     eks-pod-identity-agent = {}
     kube-proxy = {
-      Version = "v1.31.2-eksbuild.3"
+      Version = "v1.31.3-eksbuild.2"
     }
     vpc-cni = {}
   }
 
-  vpc_id                   = module.vpc.vpc_id
-  subnet_ids               = module.vpc.private_subnets
-  iam_role_use_name_prefix = false
+  vpc_id                         = module.vpc.vpc_id
+  control_plane_subnet_ids       = module.vpc.public_subnets
+  subnet_ids                     = module.vpc.private_subnets
+  cluster_endpoint_public_access = true
+  iam_role_use_name_prefix       = false
 
   self_managed_node_groups = {
     onDemand = {
