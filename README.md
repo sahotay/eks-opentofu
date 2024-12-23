@@ -1,11 +1,11 @@
-# AWS EKS Cluster Creation with OpenTofu
+# AWS EKS Cluster Creation with Terraform and OpenTofu
 
-This repository provides a demonstration of how to create and configure an **AWS EKS (Elastic Kubernetes Service)** cluster using **OpenTofu**. The goal is to showcase the process of provisioning an EKS cluster in AWS and configuring it for Kubernetes deployments.
+This repository provides a demonstration of how to create and configure an **AWS EKS (Elastic Kubernetes Service)** cluster using **Terraform**. The goal is to showcase the process of provisioning an EKS cluster in AWS and configuring it for Kubernetes deployments.
 
 ## Table of Contents
 1. [Prerequisites](#prerequisites)
 2. [Getting Started](#getting-started)
-3. [OpenTofu Configuration](#opentofu-configuration)
+3. [Terraform Configuration](#terrafrom-configuration)
 4. [Deploying the EKS Cluster](#deploying-the-eks-cluster)
 5. [Post-Deployment Steps](#post-deployment-steps)
 6. [Monitoring & Logging](#monitoring--logging)
@@ -17,13 +17,13 @@ This repository provides a demonstration of how to create and configure an **AWS
 
 Before you start, make sure you have the following tools installed:
 
-- **OpenTofu** (v1.4.5 or later)
+- **Terraform** (v1.4.5 or later)
 - **AWS CLI** (v2 or later)
 - **kubectl**
 - **k9s** (optional, for cluster management)
 - **Helm** (for deploying additional resources)
 
-### Setup AWS CLI and OpenTofu
+### Setup AWS CLI and Terraform
 1. **Configure AWS CLI**:
    ```bash
    aws configure
@@ -32,10 +32,13 @@ Before you start, make sure you have the following tools installed:
 2. **Install OpenTofu**:
    Download and install OpenTofu from the official site: [OpenTofu Install](https://opentofu.org/docs/intro/install)
 
-3. **Install kubectl**:
+3. **Install Terraform**:
+   Download and install Terraform from the official site: [Terraform Install](https://www.terraform.io/downloads.html)
+
+4. **Install kubectl**:
    Follow the installation instructions for kubectl: [kubectl Install](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 
-4. **Install k9s**:
+5. **Install k9s**:
    ```bash
    curl -Lo k9s.tar.gz https://github.com/derailed/k9s/releases/download/v0.27.4/k9s_Linux_x86_64.tar.gz &&    tar -xvf k9s.tar.gz -C /usr/local/bin &&    rm k9s.tar.gz
    ```
@@ -46,21 +49,21 @@ Before you start, make sure you have the following tools installed:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/sahotay/eks-opentofu.git
-   cd eks-opentofu
+   git clone https://github.com/sahotay/eks-terraform.git
+   cd eks-terraform
    ```
 
 2. **Set your AWS region** (optional):
-   Set your AWS region by modifying the OpenTofu configuration or setting the AWS CLI region:
+   Set your AWS region by modifying the Terraform configuration or setting the AWS CLI region:
    ```bash
    export AWS_REGION=us-east-2
    ```
 
 ---
 
-## OpenTofu Configuration
+## Terraform Configuration
 
-This repository includes OpenTofu configuration files that define the AWS infrastructure required to create an EKS cluster:
+This repository includes Terraform/OpenTofu configuration files that define the AWS infrastructure required to create an EKS cluster:
 
 - **`main.tf`**: Defines the main AWS resources like VPC, subnets, and security groups.
 - **`eks-cluster.tf`**: Contains the configuration for the EKS cluster itself.
@@ -71,22 +74,22 @@ This repository includes OpenTofu configuration files that define the AWS infras
 
 ## Deploying the EKS Cluster
 
-1. **Initialize OpenTofu**:
-   Initialize the OpenTofu working directory to download provider plugins and set up the backend:
+1. **Initialize Terraform**:
+   Initialize the Terraform working directory to download provider plugins and set up the backend:
    ```bash
-   tofu init
+   terraform init
    ```
 
 2. **Plan the Deployment**:
-   Run a OpenTofu plan to review the resources that will be created:
+   Run a Terraform plan to review the resources that will be created:
    ```bash
-   tofu plan
+   terraform plan
    ```
 
-3. **Apply the OpenTofu Configuration**:
-   Apply the OpenTofu configuration to create the EKS cluster:
+3. **Apply the Terraform Configuration**:
+   Apply the Terraform configuration to create the EKS cluster:
    ```bash
-   tofu apply
+   terraform apply
    ```
    Confirm the apply action when prompted.
 
@@ -140,10 +143,10 @@ To monitor and log EKS cluster activity, you can integrate tools like Prometheus
 
 ## Clean Up
 
-To delete the resources created by OpenTofu, run:
+To delete the resources created by terraform, run:
 
 ```bash
-opentofu destroy
+terraform destroy
 ```
 
 This will remove the EKS cluster and all related AWS resources.
