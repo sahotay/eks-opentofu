@@ -9,3 +9,7 @@ locals {
     ownedby  = "Tech Talk"
   }
 }
+
+variable "admin_role" {
+  description = "Admin IAM role to create EKS cluster"
+}
