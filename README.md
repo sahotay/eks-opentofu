@@ -50,7 +50,7 @@ Before you start, make sure you have the following tools installed:
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/sahotay/eks-opentofu-terraform.git
-   cd eks-terraform
+   cd eks-opentofu-terraform
    ```
 
 2. **Set your AWS region** (optional):
