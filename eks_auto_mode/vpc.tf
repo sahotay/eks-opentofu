@@ -9,7 +9,7 @@ data "aws_availability_zones" "available" {
 module "vpc" {
   source          = "terraform-aws-modules/vpc/aws"
   version         = "~> 5.0"
-  name            = "${local.name}-network"
+  name            = format("%s-%s", local.name, "network")
   cidr            = local.vpc_cidr
   azs             = local.azs
   private_subnets = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 4, k)]
