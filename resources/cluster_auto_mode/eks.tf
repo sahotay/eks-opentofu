@@ -13,15 +13,5 @@ module "eks" {
     node_pools = ["general-purpose"]
   }
 
-  iam_role_additional_policies = {
-    spot          = "arn:aws:iam::aws:policy/service-role/AmazonEC2SpotFleetTaggingRole"
-    SpotAutoscale = "arn:aws:iam::aws:policy/service-role/AmazonEC2SpotFleetAutoscaleRole"
-    # ec2Full       = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
-  }
-
   tags = local.tags
-}
-
-resource "aws_iam_service_linked_role" "spot" {
-  aws_service_name = "spot.amazonaws.com"
 }

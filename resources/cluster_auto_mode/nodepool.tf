@@ -12,8 +12,19 @@ provider "kubernetes" {
   token                  = data.aws_eks_cluster_auth.selected.token
 }
 
-## https://docs.aws.amazon.com/eks/latest/userguide/create-node-pool.html?icmpid=docs_console_unmapped 
-## This will create additional Nodepool for OnSpot instances
+# Service-Linked Role for Spot Instances
+## This service-linked role is required to utilize Spot Instances in the account.
+### For more information, see the AWS documentation on Service-Linked Roles.
+#### https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create-service-linked-role.html
+resource "aws_iam_service_linked_role" "spot" {
+  aws_service_name = "spot.amazonaws.com"
+}
+
+# Karpenter Node Pool for Spot Instances
+## This resource creates an additional node pool for Spot Instances using Karpenter.
+### For more information, refer to the AWS EKS Node Pool documentation. 
+#### https://docs.aws.amazon.com/eks/latest/userguide/create-node-pool.html?icmpid=docs_console_unmapped 
+
 resource "kubernetes_manifest" "karpenter_nodepool" {
   manifest = {
     apiVersion = "karpenter.sh/v1"
