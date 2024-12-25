@@ -2,7 +2,7 @@
 ## This resource creates an additional node pool for Spot Instances using Karpenter.
 ### For more information, refer to the AWS EKS Node Pool documentation. 
 #### https://docs.aws.amazon.com/eks/latest/userguide/create-node-pool.html?icmpid=docs_console_unmapped 
-##### https://karpenter.sh/docs/concepts/nodepools/#:~:text=If%20Karpenter%20encounters%20a%20taint,need%20to%20tolerate%20the%20taint.
+##### https://karpenter.sh/docs/concepts/nodepools/
 
 resource "kubernetes_manifest" "karpenter_nodepool" {
   manifest = {
